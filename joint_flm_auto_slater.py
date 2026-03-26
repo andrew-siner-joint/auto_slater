@@ -1,8 +1,9 @@
-import csv, re, flame
+import csv, re
+# import flame
 import unicodedata
 from pprint import pprint
 
-src_csv_file = r'/Users/jointadmin/Downloads/test.csv'
+src_csv_file = r'/Users/jointadmin/Documents/joint_pipe_rnd/auto_slate/auto_slater/sample_csv_001.csv'
 
 def find_isci(row):
     ISCI_PATTERN = re.compile(r"^[A-Z]{4}\d{7}[A-Z]$", re.IGNORECASE)
@@ -69,13 +70,13 @@ def parse_delivery_csv(csv_matrix):
             if isci:
                 new_dict = {
                     "isci": isci,
-                    "filename":     (row),
+                    "filename": find_deliverable_name(row),
                 }
                 del_list.append(new_dict)
     formatted_filename = [format_del_filename(d) for d in del_list]
     # pprint(formatted_filename)
-    return formatted_filename     
-    # pprint(del_list)
+    # return formatted_filename     
+    pprint(del_list)
 
 
 parse_delivery_csv(src_csv_file)
